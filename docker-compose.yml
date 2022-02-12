@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  app:
+    container_name: app
+    environment:
+      - PORT=${PORT}
+    build:
+      args:
+        - PORT=${PORT}
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:13
+    container_name: postgresdb
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./tmp/postgres_data:/var/lib/postgresql/data

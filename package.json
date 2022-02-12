@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "db": "bash ./scripts/docker.sh start_database",
     "dev": "webpack --watch",
     "build": "webpack --mode production --progress"
   },
